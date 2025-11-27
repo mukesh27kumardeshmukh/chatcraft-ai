@@ -126,15 +126,21 @@ const Index = () => {
   return (
     <div className="flex flex-col h-screen bg-background">
       <header className="border-b bg-gradient-to-r from-primary to-secondary shadow-lg sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-4 py-3 flex items-center gap-4">
-          <img 
-            src={pharmacyLogo} 
-            alt="MK Pharmacy Hub Logo" 
-            className="w-12 h-12 object-contain rounded-lg bg-white p-1 shadow-md"
-          />
-          <div className="flex-1">
-            <h1 className="text-2xl font-bold text-white">MK Pharmacy Hub</h1>
-            <p className="text-xs text-white/90">आपकी स्वास्थ्य सहायक</p>
+        <div className="max-w-4xl mx-auto px-4 py-3">
+          <div className="flex items-center gap-4">
+            <img 
+              src={pharmacyLogo} 
+              alt="MK Pharmacy Hub Logo" 
+              className="w-12 h-12 object-contain rounded-lg bg-white p-1 shadow-md"
+            />
+            <div className="flex-1">
+              <h1 className="text-2xl font-bold text-white">MK Pharmacy Hub</h1>
+              <p className="text-xs text-white/90">आपकी स्वास्थ्य सहायक</p>
+            </div>
+          </div>
+          <div className="mt-2 text-xs text-white/95 border-t border-white/20 pt-2">
+            <p className="font-medium">स्वामी: मुकेश कुमार देशमुख</p>
+            <p>ग्राम चंगोरी, दुर्ग, छत्तीसगढ़</p>
           </div>
         </div>
       </header>
