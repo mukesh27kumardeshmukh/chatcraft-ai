@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Send } from "lucide-react";
+import { Send, Loader2 } from "lucide-react";
 
 interface ChatInputProps {
   onSend: (message: string) => void;
@@ -27,25 +27,29 @@ const ChatInput = ({ onSend, disabled }: ChatInputProps) => {
   };
 
   return (
-    <div className="border-t bg-background">
+    <div className="border-t bg-background shadow-lg">
       <form onSubmit={handleSubmit} className="max-w-3xl mx-auto p-4">
         <div className="flex gap-4 items-end">
           <Textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Message AI..."
+            placeholder="अपना संदेश लिखें..."
             disabled={disabled}
-            className="min-h-[52px] max-h-[200px] resize-none"
+            className="min-h-[56px] max-h-[200px] resize-none text-base"
             rows={1}
           />
           <Button
             type="submit"
             size="icon"
             disabled={!input.trim() || disabled}
-            className="h-[52px] w-[52px] flex-shrink-0"
+            className="h-[56px] w-[56px] flex-shrink-0 bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl"
           >
-            <Send className="h-4 w-4" />
+            {disabled ? (
+              <Loader2 className="h-5 w-5 animate-spin" />
+            ) : (
+              <Send className="h-5 w-5" />
+            )}
           </Button>
         </div>
       </form>

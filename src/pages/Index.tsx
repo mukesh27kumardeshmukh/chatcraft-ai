@@ -2,6 +2,8 @@ import { useState } from "react";
 import ChatMessage from "@/components/ChatMessage";
 import ChatInput from "@/components/ChatInput";
 import { useToast } from "@/hooks/use-toast";
+import pharmacyLogo from "@/assets/pharmacy-logo.jpg";
+import { Pill, Heart, Activity } from "lucide-react";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -106,34 +108,71 @@ const Index = () => {
     } catch (e) {
       console.error("Error:", e);
       toast({
-        title: "Error",
-        description: e instanceof Error ? e.message : "Failed to send message",
+        title: "त्रुटि",
+        description: e instanceof Error ? e.message : "संदेश भेजने में विफल",
         variant: "destructive",
       });
       setIsLoading(false);
-      // Remove the user message on error
       setMessages((prev) => prev.slice(0, -1));
     }
   };
 
+  const examplePrompts = [
+    { text: "दवा की जानकारी", icon: Pill },
+    { text: "स्वास्थ्य सलाह", icon: Heart },
+    { text: "लक्षण विश्लेषण", icon: Activity },
+  ];
+
   return (
     <div className="flex flex-col h-screen bg-background">
-      <header className="border-b bg-background sticky top-0 z-10">
-        <div className="max-w-3xl mx-auto px-4 py-4">
-          <h1 className="text-xl font-semibold">ChatGPT</h1>
+      <header className="border-b bg-gradient-to-r from-primary to-secondary shadow-lg sticky top-0 z-10">
+        <div className="max-w-4xl mx-auto px-4 py-3 flex items-center gap-4">
+          <img 
+            src={pharmacyLogo} 
+            alt="MK Pharmacy Hub Logo" 
+            className="w-12 h-12 object-contain rounded-lg bg-white p-1 shadow-md"
+          />
+          <div className="flex-1">
+            <h1 className="text-2xl font-bold text-white">MK Pharmacy Hub</h1>
+            <p className="text-xs text-white/90">आपकी स्वास्थ्य सहायक</p>
+          </div>
         </div>
       </header>
 
       <main className="flex-1 overflow-y-auto">
         {messages.length === 0 ? (
-          <div className="flex items-center justify-center h-full">
-            <div className="text-center space-y-4 p-8">
-              <h2 className="text-4xl font-semibold">How can I help you today?</h2>
-              <p className="text-muted-foreground">Start a conversation by typing a message below</p>
+          <div className="flex items-center justify-center h-full p-8">
+            <div className="text-center space-y-8 max-w-3xl">
+              <div className="space-y-3">
+                <h2 className="text-4xl font-bold text-primary">नमस्ते! 👋</h2>
+                <p className="text-xl text-muted-foreground">
+                  मैं आपकी स्वास्थ्य सेवा में कैसे मदद कर सकता हूं?
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+                {examplePrompts.map((prompt, idx) => {
+                  const Icon = prompt.icon;
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => sendMessage(prompt.text)}
+                      className="group p-6 bg-card border-2 border-border rounded-xl hover:border-primary hover:shadow-lg transition-all duration-300 hover:scale-105"
+                    >
+                      <div className="flex flex-col items-center gap-3">
+                        <div className="p-3 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors">
+                          <Icon className="w-8 h-8 text-primary" />
+                        </div>
+                        <span className="font-semibold text-foreground">{prompt.text}</span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         ) : (
-          <div>
+          <div className="pb-4">
             {messages.map((msg, idx) => (
               <ChatMessage key={idx} role={msg.role} content={msg.content} />
             ))}
