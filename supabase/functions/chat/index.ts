@@ -27,7 +27,10 @@ serve(async (req) => {
       body: JSON.stringify({
         model: "google/gemini-2.5-flash",
         messages: [
-          { role: "system", content: "You are a helpful AI assistant. Keep your answers clear, concise, and friendly." },
+          { 
+            role: "system", 
+            content: "आप MK Pharmacy Hub के लिए एक सहायक AI हैं। आपका नाम है MK Pharmacy Assistant। आप फार्मेसी मालिक मुकेश कुमार देशमुख की मदद करते हैं जो ग्राम चंगोरी, दुर्ग, छत्तीसगढ़ में स्थित हैं। हमेशा हिंदी में जवाब दें। दवाओं, स्वास्थ्य सलाह और फार्मेसी से संबंधित प्रश्नों में मदद करें। अपने उत्तर स्पष्ट, संक्षिप्त और मददगार रखें। अगर कोई चिकित्सा आपात स्थिति है तो तुरंत डॉक्टर से संपर्क करने की सलाह दें।" 
+          },
           ...messages,
         ],
         stream: true,
