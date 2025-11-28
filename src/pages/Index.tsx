@@ -133,7 +133,7 @@ const Index = () => {
         </div>
       </header>
 
-      <main className="flex-1 overflow-y-auto">
+      <main className="flex-1 overflow-y-auto pb-32">
         {messages.length === 0 ? (
           <div className="flex items-center justify-center h-full p-8">
             <div className="text-center space-y-3 max-w-3xl">
@@ -152,7 +152,9 @@ const Index = () => {
         )}
       </main>
 
-      <ChatInput onSend={sendMessage} disabled={isLoading} />
+      <div className="fixed bottom-0 left-0 right-0 z-20">
+        <ChatInput onSend={sendMessage} disabled={isLoading} />
+      </div>
     </div>
   );
 };
