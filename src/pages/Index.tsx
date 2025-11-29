@@ -154,11 +154,6 @@ const Index = () => {
 
       <div className="fixed bottom-0 left-0 right-0 z-20">
         <ChatInput onSend={sendMessage} disabled={isLoading} />
-        <div className="bg-muted/50 border-t py-2 px-4 text-center">
-          <p className="text-xs text-muted-foreground">
-            Powered by <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Lovable</a>
-          </p>
-        </div>
       </div>
     </div>
   );
